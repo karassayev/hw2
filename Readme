@@ -1,0 +1,19 @@
+#curl
+curl -X GET "http://localhost:9200"
+#verifying that index was created
+curl -X GET "http://localhost:9200/threat_data?pretty"
+#check the uploaded data
+curl -X GET "http://localhost:9200/threat_data/_search?pretty"
+#delete the existing index
+curl -X DELETE "http://localhost:9200/threat_data"
+#docker run
+docker run -d --name elasticsearch -p 9200:9200 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+#start elasticsearch
+docker start elasticsearch
+#stop elasticsearch container
+docker stop elasticsearch
+#remove the container and data
+docker rm elasticsearch
+docker volume prune
+#run the app
+python task.py
